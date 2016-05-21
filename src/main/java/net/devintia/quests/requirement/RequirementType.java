@@ -6,12 +6,17 @@ import net.devintia.quests.requirements.LevelRequirement;
 import net.devintia.quests.requirements.VisitedRequirement;
 
 /**
- * Created by Martin on 21.05.2016.
+ * Holds class references for all requirements
+ *
+ * @author MiniDigger
+ * @version 1.0.0
  */
 @Getter
 @AllArgsConstructor
 public enum RequirementType {
-    LEVEL( "level", LevelRequirement.class ), VISITED( "visited", VisitedRequirement.class );
+
+    LEVEL( "level", LevelRequirement.class ),
+    VISITED( "visited", VisitedRequirement.class );
 
     private String name;
     private Class<? extends Requirement> clazz;

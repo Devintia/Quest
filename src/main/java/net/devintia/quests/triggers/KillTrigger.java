@@ -5,7 +5,8 @@ import net.devintia.quests.trigger.Trigger;
 import net.devintia.quests.trigger.TriggerType;
 
 /**
- * Created by Martin on 21.05.2016.
+ * @author MiniDigger
+ * @version 1.0.0
  */
 public class KillTrigger extends Trigger {
 

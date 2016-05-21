@@ -10,7 +10,8 @@ import org.bukkit.event.player.PlayerPickupItemEvent;
 import java.util.UUID;
 
 /**
- * Created by Martin on 21.05.2016.
+ * @author MiniDigger
+ * @version 1.0.0
  */
 public class CollectItemTrigger extends Trigger {
 

@@ -9,7 +9,8 @@ import net.devintia.quests.quest.QuestInstance;
 import java.util.UUID;
 
 /**
- * Created by Martin on 21.05.2016.
+ * @author MiniDigger
+ * @version 1.0.0
  */
 public class QuestCommands {
 
@@ -29,6 +30,6 @@ public class QuestCommands {
             return;
         }
 
-        QuestInstance instance = quest.newInstance( args.getPlayer() );
+        QuestInstance instance = quest.newInstance( args.getPlayer(), true );
     }
 }

@@ -10,7 +10,8 @@ import org.bukkit.entity.Player;
 import java.util.List;
 
 /**
- * Created by Martin on 19.05.2016.
+ * @author MiniDigger
+ * @version 1.0.0
  */
 @AllArgsConstructor
 @Getter

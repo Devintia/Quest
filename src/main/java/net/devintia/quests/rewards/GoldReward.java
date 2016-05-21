@@ -5,7 +5,8 @@ import net.devintia.quests.reward.Reward;
 import org.bukkit.entity.Player;
 
 /**
- * Created by Martin on 18.05.2016.
+ * @author MiniDigger
+ * @version 1.0.0
  */
 @Getter
 public class GoldReward extends Reward {

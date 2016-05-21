@@ -11,7 +11,8 @@ import java.util.List;
 import java.util.UUID;
 
 /**
- * Created by Martin on 20.05.2016.
+ * @author MiniDigger
+ * @version 1.0.0
  */
 @Getter
 public class CloseDoorAction extends Action {

@@ -19,7 +19,8 @@ import java.util.List;
 import java.util.UUID;
 
 /**
- * Created by Martin on 18.05.2016.
+ * @author MiniDigger
+ * @version 1.0.0
  */
 @Getter
 @AllArgsConstructor
@@ -106,13 +107,27 @@ public class Quest {
         return false;
     }
 
-    public QuestInstance newInstance( Player player ) {
-        QuestInstance instance = new QuestInstance( player, this );
+    public boolean checkCompleted( Player player ) {
+        //TODO check for completion
+        return true;
+    }
 
-        PlayerBeginQuestEvent event = new PlayerBeginQuestEvent( player, instance );
-        Bukkit.getPluginManager().callEvent( event );
-        if ( event.isCancelled() ) {
-            return null;
+    /**
+     * Creates a new quest instance for the player. Gets called if a player starts a quest (active = true) or if the quests status of a player gets loaded (active = false)
+     *
+     * @param player the player who should be assigned to the new instance
+     * @param active true if the player just started the quest, false if the questinstance was loaded from the db
+     * @return the new quest instance
+     */
+    public QuestInstance newInstance( Player player, boolean active ) {
+        QuestInstance instance = new QuestInstance( player, this, active );
+
+        if ( active ) {
+            PlayerBeginQuestEvent event = new PlayerBeginQuestEvent( player, instance );
+            Bukkit.getPluginManager().callEvent( event );
+            if ( event.isCancelled() ) {
+                return null;
+            }
         }
 
         plugin.getQuestHandler().newInstance( instance );

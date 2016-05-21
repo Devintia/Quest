@@ -5,7 +5,8 @@ import lombok.Getter;
 import org.bukkit.entity.Player;
 
 /**
- * Created by Martin on 21.05.2016.
+ * @author MiniDigger
+ * @version 1.0.0
  */
 @Getter
 @AllArgsConstructor

@@ -2,10 +2,10 @@ package net.devintia.quests.trigger;
 
 import lombok.AllArgsConstructor;
 import lombok.Getter;
-import net.devintia.quests.quest.QuestInstance;
 
 /**
- * Created by Martin on 21.05.2016.
+ * @author MiniDigger
+ * @version 1.0.0
  */
 @Getter
 @AllArgsConstructor

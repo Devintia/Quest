@@ -8,7 +8,10 @@ import net.devintia.quests.trigger.TriggerInstance;
 import java.util.List;
 
 /**
- * Created by Martin on 20.05.2016.
+ * A action can happen at any point in time during a quest. It gets triggered by a trigger
+ *
+ * @author MiniDigger
+ * @version 1.0.0
  */
 @AllArgsConstructor
 @Getter

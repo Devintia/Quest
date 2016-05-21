@@ -7,12 +7,18 @@ import net.devintia.quests.rewards.GoldReward;
 import net.devintia.quests.rewards.ItemReward;
 
 /**
- * Created by Martin on 21.05.2016.
+ * Holds class references for all rewards
+ *
+ * @author MiniDigger
+ * @version 1.0.0
  */
 @Getter
 @AllArgsConstructor
 public enum RewardType {
-    EXP( "exp", ExpReward.class ), GOLD( "gold", GoldReward.class ), ITEM( "item", ItemReward.class );
+
+    EXP( "exp", ExpReward.class ),
+    GOLD( "gold", GoldReward.class ),
+    ITEM( "item", ItemReward.class );
 
     private String name;
     private Class<? extends Reward> clazz;

@@ -8,7 +8,8 @@ import org.bukkit.event.HandlerList;
 import org.bukkit.event.player.PlayerEvent;
 
 /**
- * Created by Martin on 20.05.2016.
+ * @author MiniDigger
+ * @version 1.0.0
  */
 @Getter
 public class PlayerBeginQuestEvent extends PlayerEvent implements Cancellable {

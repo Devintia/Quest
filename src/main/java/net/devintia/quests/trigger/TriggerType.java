@@ -10,7 +10,10 @@ import net.devintia.quests.triggers.FinishQuestSuccessTrigger;
 import net.devintia.quests.triggers.KillTrigger;
 
 /**
- * Created by Martin on 18.05.2016.
+ * Holds class references for all triggers
+ *
+ * @author MiniDigger
+ * @version 1.0.0
  */
 @Getter
 @AllArgsConstructor

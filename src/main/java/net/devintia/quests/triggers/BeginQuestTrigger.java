@@ -9,7 +9,8 @@ import org.bukkit.event.EventHandler;
 import org.bukkit.event.EventPriority;
 
 /**
- * Created by Martin on 20.05.2016.
+ * @author MiniDigger
+ * @version 1.0.0
  */
 @Getter
 public class BeginQuestTrigger extends Trigger {

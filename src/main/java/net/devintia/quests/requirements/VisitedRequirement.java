@@ -7,7 +7,8 @@ import org.bukkit.entity.Player;
 import java.util.UUID;
 
 /**
- * Created by Martin on 21.05.2016.
+ * @author MiniDigger
+ * @version 1.0.0
  */
 public class VisitedRequirement extends Requirement {
 

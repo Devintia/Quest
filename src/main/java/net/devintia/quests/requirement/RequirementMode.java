@@ -1,8 +1,10 @@
 package net.devintia.quests.requirement;
 
 /**
- * Created by Martin on 21.05.2016.
+ * @author MiniDigger
+ * @version 1.0.0
  */
 public enum RequirementMode {
-    AND, OR;
+    AND,
+    OR
 }

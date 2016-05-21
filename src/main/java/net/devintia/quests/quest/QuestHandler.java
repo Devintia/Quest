@@ -26,7 +26,8 @@ import java.util.Map;
 import java.util.UUID;
 
 /**
- * Created by Martin on 20.05.2016.
+ * @author MiniDigger
+ * @version 1.0.0
  */
 @Log
 public class QuestHandler {
@@ -76,7 +77,7 @@ public class QuestHandler {
         return null;
     }
 
-    public void newInstance( QuestInstance instance ) {
+    void newInstance( QuestInstance instance ) {
         List<QuestInstance> instances = questInstances.get( instance.getPlayer().getUniqueId() );
         if ( instances == null ) {
             instances = new ArrayList<>();
@@ -85,7 +86,7 @@ public class QuestHandler {
         questInstances.put( instance.getPlayer().getUniqueId(), instances );
     }
 
-    public void loadQuest( File file ) {
+    private void loadQuest( File file ) {
         FileConfiguration questConfig = YamlConfiguration.loadConfiguration( file );
 
         // quest

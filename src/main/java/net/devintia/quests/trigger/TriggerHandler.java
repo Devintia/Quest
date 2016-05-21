@@ -6,7 +6,8 @@ import net.devintia.quests.QuestPlugin;
 import java.lang.reflect.InvocationTargetException;
 
 /**
- * Created by Martin on 19.05.2016.
+ * @author MiniDigger
+ * @version 1.0.0
  */
 @Log
 public class TriggerHandler {

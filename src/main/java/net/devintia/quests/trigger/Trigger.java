@@ -13,7 +13,8 @@ import org.bukkit.event.Listener;
 import java.util.List;
 
 /**
- * Created by Martin on 18.05.2016.
+ * @author MiniDigger
+ * @version 1.0.0
  */
 @AllArgsConstructor
 @Getter
@@ -22,7 +23,14 @@ public abstract class Trigger implements Listener {
     private TriggerType type;
     private QuestPlugin plugin;
 
-    public void triggered( Object input, Player player, QuestInstance quest ) {
+    /**
+     * Called by a Trigger and triggers all trigger instances that "listen" to this trigger
+     *
+     * @param input  the input from a event or smth like that
+     * @param player the player who triggered the trigger
+     * @param quest  the quest instance of the player
+     */
+    protected void triggered( Object input, Player player, QuestInstance quest ) {
         for ( Action action : quest.getQuest().getActions( getType() ) ) {
             for ( TriggerInstance triggerInstance : action.getTriggers() ) {
                 if ( triggerInstance.getType().equals( type ) ) {
@@ -50,7 +58,13 @@ public abstract class Trigger implements Listener {
         }
     }
 
-    public void triggered( Object input, Player player ) {
+    /**
+     * see {@link #triggered(Object, Player, QuestInstance)}
+     *
+     * @param input  -
+     * @param player -
+     */
+    protected void triggered( Object input, Player player ) {
         List<QuestInstance> activeQuests = plugin.getQuestHandler().getActiveQuests( player.getUniqueId() );
 
         for ( QuestInstance instance : activeQuests ) {

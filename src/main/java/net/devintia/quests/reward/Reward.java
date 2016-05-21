@@ -2,13 +2,11 @@ package net.devintia.quests.reward;
 
 import lombok.AllArgsConstructor;
 import lombok.Getter;
-import net.devintia.quests.quest.Quest;
 import org.bukkit.entity.Player;
 
-import java.util.List;
-
 /**
- * Created by Martin on 18.05.2016.
+ * @author MiniDigger
+ * @version 1.0.0
  */
 @AllArgsConstructor
 @Getter

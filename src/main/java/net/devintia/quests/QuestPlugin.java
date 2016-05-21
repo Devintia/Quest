@@ -8,7 +8,8 @@ import net.devintia.quests.trigger.TriggerHandler;
 import org.bukkit.plugin.java.JavaPlugin;
 
 /**
- * Created by Martin on 21.05.2016.
+ * @author MiniDigger
+ * @version 1.0.0
  */
 public class QuestPlugin extends JavaPlugin {
     @Getter
@@ -28,5 +29,12 @@ public class QuestPlugin extends JavaPlugin {
 
         commandHandler = new CommandHandler( this );
         commandHandler.register( new QuestCommands( this ) );
+    }
+
+    @Override
+    public void onDisable() {
+        questHandler = null;
+        triggerHandler = null;
+        commandHandler = null;
     }
 }

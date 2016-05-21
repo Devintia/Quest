@@ -7,7 +7,8 @@ import org.bukkit.entity.Player;
 import java.util.UUID;
 
 /**
- * Created by Martin on 18.05.2016.
+ * @author MiniDigger
+ * @version 1.0.0
  */
 @Getter
 public class ItemReward extends Reward {
