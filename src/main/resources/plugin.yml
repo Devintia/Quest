@@ -1,0 +1,5 @@
+name: DevintiaQuests
+version: 1.0.0
+author: DevinitaTeam
+main: net.devintia.quests.QuestPlugin
+depends: [DevintiaCommons]
