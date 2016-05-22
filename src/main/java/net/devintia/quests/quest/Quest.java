@@ -107,6 +107,12 @@ public class Quest {
         return false;
     }
 
+    /**
+     * Checks if a player completed all necessary tasks for this quest
+     *
+     * @param player the player
+     * @return weather or not the player has completed this quest
+     */
     public boolean checkCompleted( Player player ) {
         //TODO check for completion
         return true;

@@ -6,6 +6,8 @@ import net.devintia.quests.QuestPlugin;
 import java.lang.reflect.InvocationTargetException;
 
 /**
+ * Handles the registration of all triggers
+ *
  * @author MiniDigger
  * @version 1.0.0
  */
@@ -18,10 +20,13 @@ public class TriggerHandler {
         this.plugin = plugin;
     }
 
-    public void registerTrigger( Trigger trigger ) {
+    private void registerTrigger( Trigger trigger ) {
         plugin.getServer().getPluginManager().registerEvents( trigger, plugin );
     }
 
+    /**
+     * Registers the listeners for all triggers, needs to be called onEnable
+     */
     public void registerTriggers() {
         for ( TriggerType triggerType : TriggerType.values() ) {
             try {

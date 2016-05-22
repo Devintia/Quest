@@ -5,6 +5,8 @@ import lombok.Setter;
 import org.bukkit.entity.Player;
 
 /**
+ * A quest instance
+ *
  * @author MiniDigger
  * @version 1.0.0
  */

@@ -26,6 +26,8 @@ import java.util.Map;
 import java.util.UUID;
 
 /**
+ * Handles the loading and management of all quests
+ *
  * @author MiniDigger
  * @version 1.0.0
  */
@@ -44,6 +46,9 @@ public class QuestHandler {
         questFile = new File( plugin.getDataFolder(), "quests" );
     }
 
+    /**
+     * Loads all quest files from the quest folder
+     */
     public void loadQuests() {
         if ( !questFile.exists() ) {
             questFile.mkdirs();
@@ -55,19 +60,18 @@ public class QuestHandler {
         }
     }
 
-    public QuestInstance getQuestInstance( UUID playerId, UUID questId ) {
-        for ( QuestInstance instance : questInstances.get( playerId ) ) {
-            if ( instance.getQuest().getId().equals( questId ) ) {
-                return instance;
-            }
-        }
-        return null;
-    }
-
+    /**
+     * @param playerId the uuid of the player
+     * @return all active quests for a player
+     */
     public List<QuestInstance> getActiveQuests( UUID playerId ) {
         return questInstances.get( playerId );
     }
 
+    /**
+     * @param id the id of the quest
+     * @return the quest with the id, may be null if it does not exists
+     */
     public Quest getQuest( UUID id ) {
         for ( Quest quest : quests ) {
             if ( quest.getId().equals( id ) ) {

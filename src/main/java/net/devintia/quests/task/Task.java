@@ -6,6 +6,8 @@ import net.devintia.quests.trigger.TriggerAble;
 import net.devintia.quests.trigger.TriggerInstance;
 
 /**
+ * A task is a objective a player needs to complete to finish the quest.
+ *
  * @author MiniDigger
  * @version 1.0.0
  */

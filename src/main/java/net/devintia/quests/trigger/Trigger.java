@@ -13,6 +13,8 @@ import org.bukkit.event.Listener;
 import java.util.List;
 
 /**
+ * A trigger is a listener, that listens to some specific events and can trigger TriggerAble actions or tasks.
+ *
  * @author MiniDigger
  * @version 1.0.0
  */
