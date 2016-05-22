@@ -1,0 +1,37 @@
+quest:
+    uuid: 00000001-0000-0000-0000-000000000001
+    name: Test
+    author: Test
+    series: Test
+    type: SIDE
+requirement:
+    mode: OR
+    level: 10
+    visited: 00000000-0000-0000-0000-000000000000
+task:
+    collect_item: '00000000-0000-0000-0000-000000000000|1'
+    kill_mob: '00000000-0000-0000-0000-000000000000|1'
+reward:
+    exp: 1000
+    gold: 10
+    item: '00000000-0000-0000-0000-000000000000|1'
+action:
+    0:
+        type: OPEN_DOOR
+        data: '00000000-0000-0000-0000-000000000000'
+        trigger:
+            begin_quest: "~"
+    1:
+        type: CLOSE_DOOR
+        data: '00000000-0000-0000-0000-000000000000'
+        trigger:
+            collect_item:  '00000000-0000-0000-0000-000000000000|1'
+message:
+    0:
+        string: "Quest start message, yeah"
+        trigger:
+            begin_quest: "~"
+    1:
+        string: "finish"
+        trigger:
+            finish_quest_sucess: "~"
