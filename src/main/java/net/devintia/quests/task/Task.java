@@ -1,7 +1,7 @@
 package net.devintia.quests.task;
 
 import lombok.Getter;
-import lombok.Setter;
+import net.devintia.quests.quest.QuestInstance;
 import net.devintia.quests.trigger.TriggerAble;
 import net.devintia.quests.trigger.TriggerInstance;
 
@@ -16,12 +16,19 @@ public abstract class Task implements TriggerAble {
 
     private TaskType type;
     private TriggerInstance triggerInstance;
-    @Setter
-    private boolean completed;
+    private int triggersRequired;
 
-    public Task( TaskType type, TriggerInstance triggerInstance ) {
+    public Task( TaskType type, TriggerInstance triggerInstance, int triggersRequired ) {
         this.type = type;
         this.triggerInstance = triggerInstance;
-        completed = false;
+        this.triggersRequired = triggersRequired;
+    }
+
+    public TaskInstance newInstance( QuestInstance quest ) {
+        return new TaskInstance( this, quest, triggersRequired );
+    }
+
+    public void decrease(QuestInstance quest){
+        quest.decrease(type);
     }
 }

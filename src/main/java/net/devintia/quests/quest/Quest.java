@@ -110,10 +110,10 @@ public class Quest {
     /**
      * Checks if a player completed all necessary tasks for this quest
      *
-     * @param player the player
+     * @param playerid the uuid of the player to check
      * @return weather or not the player has completed this quest
      */
-    public boolean checkCompleted( Player player ) {
+    public boolean checkCompleted( UUID playerid ) {
         //TODO check for completion
         return true;
     }
@@ -127,6 +127,10 @@ public class Quest {
      */
     public QuestInstance newInstance( Player player, boolean active ) {
         QuestInstance instance = new QuestInstance( player, this, active );
+
+        for ( Task task : tasks ) {
+            instance.getTaskInstances().add( task.newInstance( instance ) );
+        }
 
         if ( active ) {
             PlayerBeginQuestEvent event = new PlayerBeginQuestEvent( player, instance );

@@ -13,5 +13,5 @@ import lombok.Getter;
 @AllArgsConstructor
 public class TriggerInstance {
     private TriggerType type;
-    private String data;
+    private Object data;
 }

@@ -1,5 +1,6 @@
 package net.devintia.quests.trigger;
 
+import net.devintia.quests.quest.QuestInstance;
 import org.bukkit.entity.Player;
 
 /**
@@ -10,5 +11,5 @@ import org.bukkit.entity.Player;
  */
 public interface TriggerAble {
 
-    void trigger( TriggerType trigger, Player player );
+    void trigger( TriggerType trigger, Player player, QuestInstance quest );
 }

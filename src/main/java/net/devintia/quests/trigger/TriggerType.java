@@ -3,6 +3,7 @@ package net.devintia.quests.trigger;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import net.devintia.quests.triggers.BeginQuestTrigger;
+import net.devintia.quests.triggers.BreakBlockTrigger;
 import net.devintia.quests.triggers.CollectItemTrigger;
 import net.devintia.quests.triggers.EnterRegionTrigger;
 import net.devintia.quests.triggers.FinishQuestFailTrigger;
@@ -24,7 +25,8 @@ public enum TriggerType {
     FINISH_QUEST_FAIL( "finish_quest_fail", FinishQuestFailTrigger.class ),
     COLLECT_ITEM( "collect_item", CollectItemTrigger.class ),
     ENTER_REGION( "enter_region", EnterRegionTrigger.class ),
-    KILL( "kill", KillTrigger.class );
+    KILL( "kill", KillTrigger.class ),
+    BREAK_BLOCK( "break_block", BreakBlockTrigger.class );
 
     private String name;
     private Class<? extends Trigger> clazz;

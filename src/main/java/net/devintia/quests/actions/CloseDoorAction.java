@@ -3,6 +3,7 @@ package net.devintia.quests.actions;
 import lombok.Getter;
 import net.devintia.quests.action.Action;
 import net.devintia.quests.action.ActionType;
+import net.devintia.quests.quest.QuestInstance;
 import net.devintia.quests.trigger.TriggerInstance;
 import net.devintia.quests.trigger.TriggerType;
 import org.bukkit.entity.Player;
@@ -25,7 +26,7 @@ public class CloseDoorAction extends Action {
     }
 
     @Override
-    public void trigger( TriggerType trigger, Player player ) {
+    public void trigger( TriggerType trigger, Player player, QuestInstance quest ) {
         //TODO close door
         player.sendMessage( "*door " + doorId + " closed* (was triggered by " + trigger + ")" );
     }

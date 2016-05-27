@@ -37,7 +37,7 @@ public abstract class Trigger implements Listener {
             for ( TriggerInstance triggerInstance : action.getTriggers() ) {
                 if ( triggerInstance.getType().equals( type ) ) {
                     if ( shouldTrigger( input, triggerInstance.getData() ) ) {
-                        action.trigger( type, player );
+                        action.trigger( type, player, quest );
                     }
                 }
             }
@@ -46,7 +46,7 @@ public abstract class Trigger implements Listener {
             for ( TriggerInstance triggerInstance : message.getTriggers() ) {
                 if ( triggerInstance.getType().equals( type ) ) {
                     if ( shouldTrigger( input, triggerInstance.getData() ) ) {
-                        message.trigger( type, player );
+                        message.trigger( type, player, quest );
                     }
                 }
             }
@@ -54,7 +54,7 @@ public abstract class Trigger implements Listener {
         for ( Task task : quest.getQuest().getTasks( getType() ) ) {
             if ( task.getTriggerInstance().getType().equals( type ) ) {
                 if ( shouldTrigger( input, task.getTriggerInstance().getData() ) ) {
-                    task.trigger( type, player );
+                    task.trigger( type, player, quest );
                 }
             }
         }
@@ -68,6 +68,10 @@ public abstract class Trigger implements Listener {
      */
     protected void triggered( Object input, Player player ) {
         List<QuestInstance> activeQuests = plugin.getQuestHandler().getActiveQuests( player.getUniqueId() );
+
+        if ( activeQuests == null ) {
+            return;
+        }
 
         for ( QuestInstance instance : activeQuests ) {
             if ( instance.isActive() ) {

@@ -5,16 +5,16 @@ import net.devintia.quests.task.Task;
 import net.devintia.quests.task.TaskType;
 import net.devintia.quests.trigger.TriggerInstance;
 import net.devintia.quests.trigger.TriggerType;
+import org.bukkit.Material;
 import org.bukkit.entity.Player;
 
 /**
- * @author MiniDigger
- * @version 1.0.0
+ * Created by Martin on 27.05.2016.
  */
-public class GoToRegionTask extends Task {
+public class BreakBlockTask extends Task {
 
-    public GoToRegionTask( String regionId ) {
-        super( TaskType.GOTO_REGION, new TriggerInstance( TriggerType.ENTER_REGION, regionId ), 1 );
+    public BreakBlockTask( String data ) {
+        super( TaskType.BREAK_BLOCK, new TriggerInstance( TriggerType.BREAK_BLOCK, Material.valueOf( data.split( "\\|" )[0] ) ), Integer.parseInt( data.split( "\\|" )[1] ) );
     }
 
     @Override

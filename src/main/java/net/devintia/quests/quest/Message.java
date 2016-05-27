@@ -21,7 +21,7 @@ public class Message implements TriggerAble {
     private List<TriggerInstance> triggers;
 
     @Override
-    public void trigger( TriggerType trigger, Player player ) {
+    public void trigger( TriggerType trigger, Player player, QuestInstance quest ) {
         for ( String msg : messages ) {
             player.sendMessage( msg );
         }
