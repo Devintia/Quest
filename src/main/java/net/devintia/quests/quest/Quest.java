@@ -4,14 +4,12 @@ import lombok.AllArgsConstructor;
 import lombok.Getter;
 import net.devintia.quests.QuestPlugin;
 import net.devintia.quests.action.Action;
-import net.devintia.quests.events.PlayerBeginQuestEvent;
 import net.devintia.quests.requirement.Requirement;
 import net.devintia.quests.requirement.RequirementMode;
 import net.devintia.quests.reward.Reward;
 import net.devintia.quests.task.Task;
 import net.devintia.quests.trigger.TriggerInstance;
 import net.devintia.quests.trigger.TriggerType;
-import org.bukkit.Bukkit;
 import org.bukkit.entity.Player;
 
 import java.util.ArrayList;
@@ -133,11 +131,7 @@ public class Quest {
         }
 
         if ( active ) {
-            PlayerBeginQuestEvent event = new PlayerBeginQuestEvent( player, instance );
-            Bukkit.getPluginManager().callEvent( event );
-            if ( event.isCancelled() ) {
-                return null;
-            }
+            plugin.getTriggerHandler().trigger( TriggerType.BEGIN_QUEST, instance, player );
         }
 
         plugin.getQuestHandler().newInstance( instance );

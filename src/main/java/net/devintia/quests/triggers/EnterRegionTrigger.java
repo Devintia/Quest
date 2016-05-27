@@ -13,9 +13,7 @@ public class EnterRegionTrigger extends Trigger {
         super( TriggerType.ENTER_REGION, plugin );
     }
 
-    public void onEnterRegion() {
-        //TODO trigger enterregiontrigger
-    }
+    //TODO trigger EnterRegionTrigger
 
     @Override
     public boolean shouldTrigger( Object input, Object expected ) {
