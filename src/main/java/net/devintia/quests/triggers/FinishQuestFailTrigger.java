@@ -16,8 +16,6 @@ public class FinishQuestFailTrigger extends Trigger {
         super( TriggerType.FINISH_QUEST_FAIL, plugin );
     }
 
-    //TODO trigger FinishQuestFailTrigger
-
     @Override
     public boolean shouldTrigger( Object input, Object expected ) {
         return true;
