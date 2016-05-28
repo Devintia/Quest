@@ -27,6 +27,11 @@ action:
         data: '00000000-0000-0000-0000-000000000000'
         trigger:
             collect_item:  '00000000-0000-0000-0000-000000000000|1'
+    2:
+        type: FAIL_QUEST
+        data: "~"
+        trigger:
+            player_death: "~"
 message:
     0:
         string: "Quest start message, yeah"
@@ -36,3 +41,7 @@ message:
         string: "finish"
         trigger:
             finish_quest_success: "~"
+    2:
+        string: "failed"
+        trigger:
+            finish_quest_fail: "~"
