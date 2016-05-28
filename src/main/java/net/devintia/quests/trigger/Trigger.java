@@ -2,6 +2,7 @@ package net.devintia.quests.trigger;
 
 import lombok.AllArgsConstructor;
 import lombok.Getter;
+import lombok.extern.java.Log;
 import net.devintia.quests.QuestPlugin;
 import net.devintia.quests.action.Action;
 import net.devintia.quests.quest.Message;
@@ -20,6 +21,7 @@ import java.util.List;
  */
 @AllArgsConstructor
 @Getter
+@Log
 public abstract class Trigger implements Listener {
 
     private TriggerType type;
@@ -70,6 +72,7 @@ public abstract class Trigger implements Listener {
         List<QuestInstance> activeQuests = plugin.getQuestHandler().getActiveQuests( player.getUniqueId() );
 
         if ( activeQuests == null ) {
+            log.warning( "Can't trigger " + getType() + " for " + player.getName() + ": no active quests found!" );
             return;
         }
 

@@ -25,5 +25,6 @@ public class ItemReward extends Reward {
     @Override
     public void applyReward( Player player ) {
         //TODO we need an item handler first
+        System.out.println( "apply item reward (" + itemId + ", " + count + ")" );
     }
 }

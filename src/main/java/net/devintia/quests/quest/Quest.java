@@ -106,17 +106,6 @@ public class Quest {
     }
 
     /**
-     * Checks if a player completed all necessary tasks for this quest
-     *
-     * @param playerid the uuid of the player to check
-     * @return weather or not the player has completed this quest
-     */
-    public boolean checkCompleted( UUID playerid ) {
-        //TODO check for completion
-        return true;
-    }
-
-    /**
      * Creates a new quest instance for the player. Gets called if a player starts a quest (active = true) or if the quests status of a player gets loaded (active = false)
      *
      * @param player the player who should be assigned to the new instance
@@ -130,11 +119,12 @@ public class Quest {
             instance.getTaskInstances().add( task.newInstance( instance ) );
         }
 
+        plugin.getQuestHandler().newInstance( instance );
+
         if ( active ) {
             plugin.getTriggerHandler().trigger( TriggerType.BEGIN_QUEST, instance, player );
         }
 
-        plugin.getQuestHandler().newInstance( instance );
 
         return instance;
     }

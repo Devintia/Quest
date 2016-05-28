@@ -9,8 +9,9 @@ requirement:
     level: 10
     visited: 00000000-0000-0000-0000-000000000000
 task:
-    collect_item: '00000000-0000-0000-0000-000000000000|1'
-    kill_mob: '00000000-0000-0000-0000-000000000000|1'
+#    collect_item: '00000000-0000-0000-0000-000000000000|1'
+#    kill_mob: '00000000-0000-0000-0000-000000000000|1'
+    break_block: 'DIRT|5'
 reward:
     exp: 1000
     gold: 10
@@ -34,4 +35,4 @@ message:
     1:
         string: "finish"
         trigger:
-            finish_quest_sucess: "~"
+            finish_quest_success: "~"

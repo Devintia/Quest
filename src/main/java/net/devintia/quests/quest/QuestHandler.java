@@ -81,6 +81,16 @@ public class QuestHandler {
         return null;
     }
 
+    void removeInstance( QuestInstance instance ) {
+        List<QuestInstance> instances = questInstances.get( instance.getPlayer().getUniqueId() );
+        if ( instances == null ) {
+            return;
+        }
+        instances.remove( instance );
+        instance.setActive( false );
+        questInstances.put( instance.getPlayer().getUniqueId(), instances );
+    }
+
     void newInstance( QuestInstance instance ) {
         List<QuestInstance> instances = questInstances.get( instance.getPlayer().getUniqueId() );
         if ( instances == null ) {
@@ -206,7 +216,7 @@ public class QuestHandler {
                         log.warning( "Could not load trigger " + triggerKey + " for message " + key + " for quest " + questName + ": error while initiation: " + ex.getClass().getName() + ": " + ex.getMessage() );
                     }
                 } else {
-                    log.warning( "Could not load reward " + key + " for message " + key + " for quest " + questName + ": unknown type " + key );
+                    log.warning( "Could not load type " + triggerKey + " for message " + key + " for quest " + questName + ": unknown type " + triggerKey );
                 }
             }
 

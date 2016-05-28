@@ -4,7 +4,9 @@ import lombok.Getter;
 import lombok.Setter;
 import net.devintia.quests.task.TaskInstance;
 import net.devintia.quests.task.TaskType;
+import net.devintia.quests.trigger.TriggerType;
 import org.bukkit.entity.Player;
+import org.bukkit.scheduler.BukkitRunnable;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -38,10 +40,28 @@ public class QuestInstance {
             if ( task.getTask().getType().equals( type ) ) {
                 task.setCount( task.getCount() - 1 );
                 if ( task.getCount() == 0 ) {
-                    System.out.println( "completed task " + type );
+                    taskInstances.remove( task );
+                    checkCompletion();
                 }
                 return;
             }
+        }
+    }
+
+    public void checkCompletion() {
+        if ( taskInstances.size() == 0 ) {
+            quest.getPlugin().getTriggerHandler().trigger( TriggerType.FINISH_QUEST_SUCCESS, this, player );
+            quest.applyRewards( player );
+
+            new BukkitRunnable() {
+                @Override
+                public void run() {
+                    quest.getPlugin().getQuestHandler().removeInstance( QuestInstance.this );
+                    taskInstances = null;
+                    active = false;
+                    player = null;
+                }
+            }.runTaskLater( quest.getPlugin(), 100 );
         }
     }
 
