@@ -50,19 +50,26 @@ public class QuestInstance {
 
     public void checkCompletion() {
         if ( taskInstances.size() == 0 ) {
-            quest.getPlugin().getTriggerHandler().trigger( TriggerType.FINISH_QUEST_SUCCESS, this, player );
             quest.applyRewards( player );
-
-            new BukkitRunnable() {
-                @Override
-                public void run() {
-                    quest.getPlugin().getQuestHandler().removeInstance( QuestInstance.this );
-                    taskInstances = null;
-                    active = false;
-                    player = null;
-                }
-            }.runTaskLater( quest.getPlugin(), 100 );
+            cancel( true );
         }
+    }
+
+    public void cancel( boolean success ) {
+        if ( success ) {
+            quest.getPlugin().getTriggerHandler().trigger( TriggerType.FINISH_QUEST_SUCCESS, this, player );
+        } else {
+            quest.getPlugin().getTriggerHandler().trigger( TriggerType.FINISH_QUEST_FAIL, this, player );
+        }
+        new BukkitRunnable() {
+            @Override
+            public void run() {
+                quest.getPlugin().getQuestHandler().removeInstance( QuestInstance.this );
+                taskInstances = null;
+                active = false;
+                player = null;
+            }
+        }.runTaskLater( quest.getPlugin(), 1 );
     }
 
     public int getRemaining( TaskType type ) {

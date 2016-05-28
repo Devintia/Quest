@@ -223,6 +223,7 @@ public class QuestHandler {
             try {
                 Message message = new Message( Arrays.asList( messageSection.getString( key + ".string" ).split( "\n" ) ), triggerInstances );
                 messages.add( message );
+                System.out.println( "loaded message " + message.getMessages().get( 0 ) + " for key " + triggerInstances.get( 0 ).getType() );
             } catch ( Exception ex ) {
                 log.warning( "Could not load message " + key + " for quest " + questName + ": error while initiation: " + ex.getClass().getName() + ": " + ex.getMessage() );
             }

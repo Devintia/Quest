@@ -72,7 +72,6 @@ public abstract class Trigger implements Listener {
         List<QuestInstance> activeQuests = plugin.getQuestHandler().getActiveQuests( player.getUniqueId() );
 
         if ( activeQuests == null ) {
-            log.warning( "Can't trigger " + getType() + " for " + player.getName() + ": no active quests found!" );
             return;
         }
 

@@ -9,6 +9,7 @@ import net.devintia.quests.triggers.EnterRegionTrigger;
 import net.devintia.quests.triggers.FinishQuestFailTrigger;
 import net.devintia.quests.triggers.FinishQuestSuccessTrigger;
 import net.devintia.quests.triggers.KillTrigger;
+import net.devintia.quests.triggers.PlayerDeathTrigger;
 
 /**
  * Holds class references for all triggers
@@ -26,7 +27,8 @@ public enum TriggerType {
     COLLECT_ITEM( "collect_item", CollectItemTrigger.class ),
     ENTER_REGION( "enter_region", EnterRegionTrigger.class ),
     KILL( "kill", KillTrigger.class ),
-    BREAK_BLOCK( "break_block", BreakBlockTrigger.class );
+    BREAK_BLOCK( "break_block", BreakBlockTrigger.class ),
+    PLAYER_DEATH( "player_death", PlayerDeathTrigger.class );
 
     private String name;
     private Class<? extends Trigger> clazz;

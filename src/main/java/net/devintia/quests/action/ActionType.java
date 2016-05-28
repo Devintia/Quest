@@ -3,6 +3,7 @@ package net.devintia.quests.action;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import net.devintia.quests.actions.CloseDoorAction;
+import net.devintia.quests.actions.FailQuestAction;
 import net.devintia.quests.actions.OpenDoorAction;
 
 /**
@@ -17,7 +18,8 @@ public enum ActionType {
 
     OPEN_DOOR( "open_door", OpenDoorAction.class ),
     CLOSE_DOOR( "close_door", CloseDoorAction.class ),
-    /*SPAWN_MOB, SPAWN_NPC, KILL_NPC, KILL_MOB, DROP_ITEM, GIVE_ITEM*/;
+    FAIL_QUEST( "fail_quest", FailQuestAction.class );
+    /*SPAWN_MOB, SPAWN_NPC, KILL_NPC, KILL_MOB, DROP_ITEM, GIVE_ITEM*/
 
     private String name;
     private Class<? extends Action> clazz;
