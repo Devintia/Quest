@@ -1,6 +1,7 @@
 package net.devintia.quests.quest;
 
 import lombok.extern.java.Log;
+import net.devintia.commons.bukkit.utils.ItemUtil;
 import net.devintia.quests.QuestPlugin;
 import net.devintia.quests.action.Action;
 import net.devintia.quests.action.ActionType;
@@ -13,9 +14,17 @@ import net.devintia.quests.task.Task;
 import net.devintia.quests.task.TaskType;
 import net.devintia.quests.trigger.TriggerInstance;
 import net.devintia.quests.trigger.TriggerType;
+import net.md_5.bungee.api.ChatColor;
+import net.md_5.bungee.api.chat.BaseComponent;
+import net.md_5.bungee.api.chat.ClickEvent;
+import net.md_5.bungee.api.chat.ComponentBuilder;
+import org.bukkit.Material;
 import org.bukkit.configuration.ConfigurationSection;
 import org.bukkit.configuration.file.FileConfiguration;
 import org.bukkit.configuration.file.YamlConfiguration;
+import org.bukkit.entity.Player;
+import org.bukkit.inventory.ItemStack;
+import org.bukkit.inventory.meta.BookMeta;
 
 import java.io.File;
 import java.util.ArrayList;
@@ -38,6 +47,9 @@ public class QuestHandler {
     private QuestPlugin plugin;
     private Map<UUID, List<QuestInstance>> questInstances;
     private File questFile;
+
+    //TODO implement daily quests
+    private Quest dailyQuest;
 
     public QuestHandler( QuestPlugin plugin ) {
         this.plugin = plugin;
@@ -223,7 +235,6 @@ public class QuestHandler {
             try {
                 Message message = new Message( Arrays.asList( messageSection.getString( key + ".string" ).split( "\n" ) ), triggerInstances );
                 messages.add( message );
-                System.out.println( "loaded message " + message.getMessages().get( 0 ) + " for key " + triggerInstances.get( 0 ).getType() );
             } catch ( Exception ex ) {
                 log.warning( "Could not load message " + key + " for quest " + questName + ": error while initiation: " + ex.getClass().getName() + ": " + ex.getMessage() );
             }
@@ -233,5 +244,58 @@ public class QuestHandler {
         quests.add( quest );
 
         log.info( "Loaded quest " + quest.getName() + "(" + quest + ")" );
+    }
+
+    public ItemStack getQuestBook( Player player ) {
+        int globalQuestCount = quests.size();
+        List<QuestInstance> activeQuests = getActiveQuests( player.getUniqueId() );
+        int activQuestCount = activeQuests == null ? 0 : activeQuests.size();
+        int activQuestPage = 2;
+        int openQuestCount = 0;
+        int openQuestPage = activQuestPage + activQuestCount;
+        int dailQuestPage = openQuestPage + openQuestCount;
+        int questArchiveCount = 0;
+        int questArchivePage = dailQuestPage + 1;
+        String progessBar = "[::::::::::::::::::::::::::::::::::::::::::::::::::::::]";
+        double progress = 0;
+
+        ItemStack book = new ItemStack( Material.WRITTEN_BOOK );
+        BookMeta meta = (BookMeta) book.getItemMeta();
+        meta.setAuthor( plugin.getLocaleManager().translate( player, "questbook.author" ) );
+        meta.setDisplayName( plugin.getLocaleManager().translate( player, "questbook.displayname" ) );
+        meta.setTitle( plugin.getLocaleManager().translate( player, "questbook.title" ) );
+
+        BaseComponent[] page0 = new ComponentBuilder( plugin.getLocaleManager().translate( player, "questbook.title" ) ).bold( true ).color( ChatColor.BLUE )
+                .append( "\n================" )
+                .append( "\n" + plugin.getLocaleManager().translate( player, "questbook.firstpagedesc" ) ).color( ChatColor.BLACK ).bold( false )
+                .append( "\n" )
+                .append( "\n1. " + plugin.getLocaleManager().translate( player, "questbook.activquests" ) + " (" + activQuestCount + ")" ).color( ChatColor.BLACK ).bold( false ).event( new ClickEvent( ClickEvent.Action.CHANGE_PAGE, activQuestPage + "" ) )
+                .append( "\n2. " + plugin.getLocaleManager().translate( player, "questbook.openquests" ) + " (" + openQuestCount + ")" ).color( ChatColor.BLACK ).bold( false ).event( new ClickEvent( ClickEvent.Action.CHANGE_PAGE, openQuestPage + "" ) )
+                .append( "\n3. " + plugin.getLocaleManager().translate( player, "questbook.dailyquest" ) ).color( ChatColor.BLACK ).bold( false ).event( new ClickEvent( ClickEvent.Action.CHANGE_PAGE, dailQuestPage + "" ) )
+                .append( "\n4. " + plugin.getLocaleManager().translate( player, "questbook.questarchive" ) + " (" + questArchiveCount + ")" ).color( ChatColor.BLACK ).bold( false ).event( new ClickEvent( ClickEvent.Action.CHANGE_PAGE, questArchivePage + "" ) )
+                .append( "\n" )
+                .append( "\n" + plugin.getLocaleManager().translate( player, "questbook.progress" ) )
+                .append( "\n" + progessBar )
+                .append( "\n            [" + progress + "%]" )
+                .create();
+
+        BaseComponent[] page1 = new ComponentBuilder( "1. " + plugin.getLocaleManager().translate( player, "questbook.activquesttitle" ) ).bold( true ).color( ChatColor.BLUE )
+                .append( "\n================" )
+                .append( "\n" + plugin.getLocaleManager().translate( player, "questbook.activquestpagedesc" ) ).color( ChatColor.BLACK ).bold( false )
+                .create();
+        BaseComponent[] page2 = new ComponentBuilder( "Offene Quest" ).bold( true ).color( ChatColor.BLUE ).create();
+        BaseComponent[] page3 = new ComponentBuilder( "Quest Archiv" ).bold( true ).color( ChatColor.BLUE ).create();
+
+
+        ItemUtil.addPageToBook( book, page0 );
+        ItemUtil.addPageToBook( book, page1 );
+        ItemUtil.addPageToBook( book, page2 );
+        ItemUtil.addPageToBook( book, page3 );
+
+        return book;
+    }
+
+    public Quest getDailyQuest() {
+        return dailyQuest;
     }
 }
